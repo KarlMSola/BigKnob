@@ -1,5 +1,6 @@
 // Read the full tutorial at prusaprinters.org
-// Karl Martin, 2019: Added functionality for adding some lights to the knob
+
+// Karl Martin, 2019: Neopixel bling
 
 #include <Adafruit_NeoPixel.h>  //  library for controlling LED strip
 
