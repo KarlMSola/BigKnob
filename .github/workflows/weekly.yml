@@ -24,4 +24,4 @@ jobs:
       run: |
         $issuePath = Join-Path -Path $Env:GITHUB_WORKSPACE -ChildPath $Env:followUpFile
         $issueBody = Get-Content -Path $issuePath -Raw
-        gh issue create --title "Act on weekly follow-up tasks" --body $issueBody --label "Operational" --label "Planner"
+        gh issue create --title "Act on weekly follow-up tasks" --body $issueBody --label "Operational"
