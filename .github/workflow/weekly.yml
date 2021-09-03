@@ -2,7 +2,7 @@
 # Create Issue using gh command
 on:
   schedule:
-  - cron: 0 5 * * MON  # Every Monday at 5 AM
+  - cron: 0 9 * * FRI  # Every Friday at 09 AM
 name: Weekly followup tasks
 env: 
   followUpFile: ".github/planner/followup-instructions.md"
