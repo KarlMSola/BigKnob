@@ -1,0 +1,27 @@
+# Weekly planner pipeline
+# Create Issue using gh command
+on:
+  schedule:
+  - cron: 0 5 * * MON  # Every Monday at 5 AM
+name: Weekly followup tasks
+env: 
+  followUpFile: ".github/planner/followup-instructions.md"
+jobs:
+  planner-weekly:
+    name: Weekly plan
+    runs-on: ubuntu-latest
+    # Only trigger on defined repository.
+    if: github.repository == 'KarlMSola/BigKnob'
+    steps:
+    - uses: actions/checkout@v2
+    - name: login
+      env:
+        GITHUB_TOKEN_GH: ${{ secrets.GITHUB_TOKEN }}
+      shell: pwsh
+      run: $Env:GITHUB_TOKEN_GH | gh auth login --with-token
+    - name: followup-issue
+      shell: pwsh
+      run: |
+        $issuePath = Join-Path -Path $Env:GITHUB_WORKSPACE -ChildPath $Env:followUpFile
+        $issueBody = Get-Content -Path $issuePath -Raw
+        gh issue create --title "Act on weekly follow-up tasks" --body $issueBody --label "Operational" --label "Planner"
